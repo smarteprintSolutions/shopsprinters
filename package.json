@@ -1,0 +1,55 @@
+{
+  "name": "shopesprinters-next",
+  "version": "1.0.0",
+  "description": "ShopePrinters - Next.js Full Stack Application",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "seed": "tsx scripts/seed.ts"
+  },
+  "dependencies": {
+    "@easypost/api": "^8.5.0",
+    "@heroicons/react": "^2.2.0",
+    "axios": "^1.13.4",
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.9.0",
+    "clsx": "^2.0.0",
+    "cookies-next": "^4.2.0",
+    "dotenv": "^17.2.3",
+    "formidable": "^3.5.4",
+    "jose": "^5.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "lucide-react": "^1.23.0",
+    "mongoose": "^9.1.5",
+    "multer": "^2.0.2",
+    "next": "^15.1.0",
+    "next-auth": "^4.24.0",
+    "nodemailer": "^7.0.13",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "socket.io": "^4.8.3",
+    "socket.io-client": "^4.8.3",
+    "xlsx": "^0.18.5",
+    "zustand": "^4.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/nodemailer": "^8.0.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^15.1.0",
+    "postcss": "^8.4.30",
+    "tailwindcss": "^3.4.0",
+    "tsx": "^4.23.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

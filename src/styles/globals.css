@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  html {
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    @apply bg-white text-dark;
+  }
+}
+
+@layer utilities {
+  .animate-in {
+    animation-fill-mode: both;
+  }
+
+  .fade-in {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+  }
+
+  .zoom-in {
+    animation-name: zoomIn;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-out;
+  }
+
+  .zoom-in-95 {
+    animation-name: zoomIn95;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-out;
+  }
+
+  .slide-in-from-top-2 {
+    animation-name: slideInFromTop2;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+  }
+
+  .slide-in-from-top-4 {
+    animation-name: slideInFromTop4;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+  }
+
+  .slide-in-from-bottom-4 {
+    animation-name: slideInFromBottom4;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+  }
+
+  .slide-in-from-right-4 {
+    animation-name: slideInFromRight4;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+  }
+
+  .slide-in-from-left-4 {
+    animation-name: slideInFromLeft4;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomIn95 {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInFromTop2 {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromTop4 {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromBottom4 {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromRight4 {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft4 {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all duration-300 cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply btn bg-[#024ad8] text-white hover:bg-[#01369e] shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-dark border border-gray-200 hover:bg-gray-50;
+  }
+
+  .btn-accent {
+    @apply btn bg-[#ff2d46] text-white hover:bg-[#e6283e] shadow-lg;
+  }
+
+  .input,
+  .textarea,
+  .select {
+    @apply w-full bg-gray-50 border border-gray-200 px-6 py-4 rounded-2xl text-dark font-medium placeholder:text-gray-400 focus:border-[#024ad8] focus:bg-white focus:outline-none transition-all;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
