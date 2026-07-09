@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react';
 // small, dependency-free icons (emoji/SVG) used instead of react-icons
 
 function getDefaultSteps() {
-  const modelsearchinput = typeof window !== 'undefined' ? localStorage.getItem('modelSearchInput') : '';
   return [
     { label: 'Checking Device Compatibility', right: 'Verified', progress: 0, status: '' },
     { label: `Downloading Drivers for Printer`, right: 'Completed', progress: 0, status: '' },
