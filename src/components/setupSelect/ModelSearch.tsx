@@ -22,7 +22,7 @@ const ModelSearch = ({ allowModelSearch, hideHeader = false }: { allowModelSearc
       setError('Please enter your product name.');
       return;
     }
-    localStorage.setItem('modelSearchInput', input.trim());
+    // localStorage.setItem('modelSearchInput', input.trim());
     setError('');
     router.push('/complete-setup');
   };
