@@ -113,7 +113,7 @@ export default function DashboardPage() {
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/10 px-4 py-2 text-sm text-slate-200 backdrop-blur">
             <CalendarDaysIcon className="h-4 w-4 text-[#ff2d46]" />
-            <span>{new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+            <span suppressHydrationWarning>{new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
           </div>
           <Link href="/admin/products" className="rounded-2xl bg-[#ff2d46] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e6283e]">
             + Add Product

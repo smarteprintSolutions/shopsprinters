@@ -428,7 +428,13 @@ export default function ProductsPage() {
             <section className="rounded-[28px] border border-slate-200 bg-slate-50/70 p-5">
               <h4 className="text-lg font-semibold text-slate-900">Core Identity</h4>
               <div className="mt-4 grid gap-4 lg:grid-cols-2">
-                <input className="rounded-2xl border border-slate-200 bg-white px-4 py-3" placeholder="Brand" value={form.brand} onChange={(e) => setForm({ ...form, brand: e.target.value })} required />
+                <select className="rounded-2xl border border-slate-200 bg-white px-4 py-3" value={form.brand} onChange={(e) => setForm({ ...form, brand: e.target.value })} required>
+                  <option value="">Select brand</option>
+                  <option value="hp">hp</option>
+                  <option value="canon">canon</option>
+                  <option value="brother">brother</option>
+                  <option value="epson">epson</option>
+                </select>
                 <input className="rounded-2xl border border-slate-200 bg-white px-4 py-3" placeholder="Product title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} required />
                 <select className="rounded-2xl border border-slate-200 bg-white px-4 py-3" value={form.category} onChange={(e) => handleCategoryChange(e.target.value)} required>
                   <option value="">Select category</option>
@@ -467,29 +473,16 @@ export default function ProductsPage() {
                     <option key={option} value={option}>{option}</option>
                   ))}
                 </select>
-                <input className="rounded-2xl border border-slate-200 bg-white px-4 py-3" placeholder="System domain" value={form.systemDomain} onChange={(e) => setForm({ ...form, systemDomain: e.target.value })} />
               </div>
             </section>
 
-            <section className="rounded-[28px] border border-slate-200 bg-white p-5">
-              <h4 className="text-lg font-semibold text-slate-900">Physical Specs</h4>
-              <div className="mt-4 grid gap-4 lg:grid-cols-2">
-                <input className="rounded-2xl border border-slate-200 px-4 py-3" placeholder="Color" value={form.color} onChange={(e) => setForm({ ...form, color: e.target.value })} />
-                <input className="rounded-2xl border border-slate-200 px-4 py-3" placeholder="Screen size" value={form.screenSize} onChange={(e) => setForm({ ...form, screenSize: e.target.value })} />
-                <input className="rounded-2xl border border-slate-200 px-4 py-3" placeholder="Width" value={form.width} onChange={(e) => setForm({ ...form, width: e.target.value })} />
-                <input className="rounded-2xl border border-slate-200 px-4 py-3" placeholder="Height" value={form.height} onChange={(e) => setForm({ ...form, height: e.target.value })} />
-                <input className="rounded-2xl border border-slate-200 px-4 py-3" placeholder="Depth" value={form.depth} onChange={(e) => setForm({ ...form, depth: e.target.value })} />
-              </div>
-            </section>
 
             <section className="rounded-[28px] border border-slate-200 bg-white p-5">
               <h4 className="text-lg font-semibold text-slate-900">Valuation & Units</h4>
               <div className="mt-4 grid gap-4 lg:grid-cols-2">
                 <input className="rounded-2xl border border-slate-200 px-4 py-3" placeholder="Price ($)" type="number" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} required />
                 <input className="rounded-2xl border border-slate-200 px-4 py-3" placeholder="MSRP ($)" type="number" value={form.msrp} onChange={(e) => setForm({ ...form, msrp: e.target.value })} />
-                <input className="rounded-2xl border border-slate-200 px-4 py-3" placeholder="Original price" type="number" value={form.oldPrice} onChange={(e) => setForm({ ...form, oldPrice: e.target.value })} />
                 <input className="rounded-2xl border border-slate-200 px-4 py-3" placeholder="Stock" type="number" value={form.countInStock} onChange={(e) => setForm({ ...form, countInStock: e.target.value })} required />
-                <input className="rounded-2xl border border-slate-200 px-4 py-3" placeholder="Units" type="number" value={form.units} onChange={(e) => setForm({ ...form, units: e.target.value })} />
               </div>
             </section>
 
@@ -661,8 +654,19 @@ export default function ProductsPage() {
                 ) : filteredProducts.slice(0, displayLimit).map((product) => (
                   <tr key={product._id} className="border-t border-slate-100">
                     <td className="px-6 py-4">
-                      <div className="font-semibold text-slate-800">{product.title}</div>
-                      <div className="text-xs text-slate-500">{product.brand}</div>
+                      <div className="flex items-center gap-3">
+                        {product.images && product.images.length > 0 ? (
+                          <img src={product.images[0]} alt={product.title} className="h-10 w-10 rounded-lg object-cover border border-slate-200" />
+                        ) : (
+                          <div className="h-10 w-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center">
+                            <span className="text-xs text-slate-400">No img</span>
+                          </div>
+                        )}
+                        <div>
+                          <div className="font-semibold text-slate-800">{product.title}</div>
+                          <div className="text-xs text-slate-500">{product.brand}</div>
+                        </div>
+                      </div>
                     </td>
                     <td className="px-6 py-4 text-slate-600">{product.category?.name || 'Uncategorized'}</td>
                     <td className="px-6 py-4 font-medium text-slate-800">${Number(product.price).toFixed(2)}</td>
