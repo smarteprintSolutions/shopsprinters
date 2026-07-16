@@ -59,7 +59,11 @@ export async function GET(req: NextRequest) {
     if (brand) query.brand = { $regex: brand, $options: 'i' };
 
     if (limitParam === 'all') {
-      const products = await Product.find(query).populate('category').sort({ createdAt: -1 }).lean();
+      const products = await Product.find(query)
+        .populate('category')
+        .sort({ createdAt: -1 })
+        .allowDiskUse(true)
+        .lean();
       const total = products.length;
       return NextResponse.json({ products, page: 1, pages: 1, total });
     }
@@ -71,6 +75,7 @@ export async function GET(req: NextRequest) {
         .limit(pageSize)
         .skip(pageSize * (page - 1))
         .sort({ createdAt: -1 })
+        .allowDiskUse(true)
         .lean()
     ]);
 

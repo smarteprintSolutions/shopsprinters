@@ -110,4 +110,6 @@ const productSchema = new Schema<IProduct>(
   }
 );
 
+productSchema.index({ createdAt: -1 });
+
 export default mongoose.models.Product || mongoose.model<IProduct>('Product', productSchema);
