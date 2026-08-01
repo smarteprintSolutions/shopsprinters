@@ -1,0 +1,2 @@
+User-agent: *
+Disallow: /printer-driver-installation-error
