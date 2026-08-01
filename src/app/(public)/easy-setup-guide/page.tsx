@@ -1,7 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import JivoChatButton from '@/components/setupSelect/JivoChatButton';
 import BottomSlider from './buttomSlider';
 import IdentifyPrinter from './identifyPrinter';
 import WeProvide from './weProvide';
