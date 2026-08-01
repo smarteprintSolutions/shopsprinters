@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
 import {
   Printer,
   Wifi,
@@ -56,6 +57,24 @@ export default function HowSetup() {
     }
   };
 
+  const [allowStartNow, setAllowStartNow] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    fetch('/api/printer-setup/settings')
+      .then(res => res.json())
+      .then(data => setAllowStartNow(data.allowStartNow === true))
+      .catch(() => setAllowStartNow(false));
+  }, []);
+
+  const handlePrinterSetupClick = () => {
+    if (allowStartNow) {
+      router.push('/easy-setup-guide/find-printer');
+    } else {
+      openJivoChat();
+    }
+  };
+
   return (
     <section className="bg-white pt-2 pb-12 lg:pb-16">
       <div className="mx-auto max-w-7xl px-4">
@@ -88,12 +107,13 @@ export default function HowSetup() {
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-4">
-              <Link
-                href="/easy-setup-guide/find-printer"
+              <button
+                type="button"
+                onClick={handlePrinterSetupClick}
                 className="rounded bg-[#024AD8] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#0138ab] shadow-sm text-center min-w-[140px]"
               >
                 Printer Setup
-              </Link>
+              </button>
 
               <button
                 type="button"

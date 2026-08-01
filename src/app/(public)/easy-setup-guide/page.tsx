@@ -4,6 +4,7 @@ import IdentifyPrinter from './identifyPrinter';
 import WeProvide from './weProvide';
 import HowSetup from './howSetup';
 import Hero from './hero';
+import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'HP Printer Setup Guide | Easy Printer Setup & Troubleshooting',
@@ -38,6 +39,9 @@ export default function EasySetupGuide() {
     <WeProvide/>
     <IdentifyPrinter />
     <BottomSlider/>
+
+
+    <Footer />
 </>
   );
 }

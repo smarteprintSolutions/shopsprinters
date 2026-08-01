@@ -362,7 +362,7 @@ export default function ModelPage({ isOpen, onClose }) {
                   href="tel:+18556184642"
                   className="w-full border border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold py-2.5 rounded-lg text-sm flex items-center justify-center transition-colors cursor-pointer"
                 >
-                  Call Toll Free: +1 (855) 618-4642
+                  Call Toll Free: +1 (877) 238-0240
                 </a>
               </div>
             </div>
@@ -416,7 +416,7 @@ export default function ModelPage({ isOpen, onClose }) {
                   href="tel:+18556184642"
                   className="w-full border border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold py-2.5 rounded-lg text-sm flex items-center justify-center transition-colors cursor-pointer"
                 >
-                  Call Toll Free: +1 (855) 618-4642
+                  Call Toll Free: +1 (877) 238-0240
                 </a>
               </div>
             </div>

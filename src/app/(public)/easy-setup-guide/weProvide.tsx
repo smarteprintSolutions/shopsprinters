@@ -1,14 +1,36 @@
-import Image from "next/image";
-import Link from "next/link";
+"use client";
 
-const services = [
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+// Extend the global Window interface to recognize Jivo API
+declare global {
+  interface Window {
+    jivo_api?: {
+      open?: () => void;
+      show?: () => void;
+    };
+    Jivo_API?: {
+      open?: () => void;
+    };
+  }
+}
+
+interface ServiceItem {
+  image: string;
+  title: string;
+  description: string;
+  button: string;
+}
+
+const services: ServiceItem[] = [
   {
     image: "/window-11.png",
     title: "Get Instant Support for Laptop & Desktop",
     description:
       "If your Windows laptop or desktop isn't working properly, connect with our support experts for quick troubleshooting and assistance.",
     button: "Install HP Smart",
-    href: "/easy-setup-guide/find-printer",
   },
   {
     image: "/scan-print-fix.png",
@@ -16,7 +38,6 @@ const services = [
     description:
       "Learn how to print, scan and fax using your printer with easy step-by-step instructions for Windows and macOS.",
     button: "Fix Scan/Print",
-    href: "/easy-setup-guide/find-printer",
   },
   {
     image: "/printer-offline.png",
@@ -24,15 +45,58 @@ const services = [
     description:
       "Resolve printer offline errors and stuck print jobs using our guided troubleshooting and repair tools.",
     button: "Fix your Printer",
-    href: "/easy-setup-guide/find-printer",
   },
 ];
 
-export default function WeProvide() {
+function openJivoChat(): void {
+  if (typeof window === "undefined") return;
+
+  if (typeof window.jivo_api?.open === "function") {
+    window.jivo_api.open();
+    return;
+  }
+  if (typeof window.jivo_api?.show === "function") {
+    window.jivo_api.show();
+    return;
+  }
+  if (typeof window.Jivo_API?.open === "function") {
+    window.Jivo_API.open();
+  }
+}
+
+export default function WeProvide(): React.JSX.Element {
+  const router = useRouter();
+  const [allowStartNow, setAllowStartNow] = useState<boolean>(false);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetch("/api/printer-setup/settings")
+      .then((res) => res.json())
+      .then((data: { allowStartNow?: boolean }) => {
+        if (isMounted) {
+          setAllowStartNow(data.allowStartNow === true);
+        }
+      })
+      .catch(() => {
+        if (isMounted) setAllowStartNow(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const handleActionClick = (): void => {
+    if (allowStartNow) {
+      router.push("/easy-setup-guide/find-printer");
+    } else {
+      openJivoChat();
+    }
+  };
+
   return (
     <section className="bg-white py-12">
       <div className="mx-auto max-w-7xl px-4">
-
         {/* Heading */}
         <div className="text-center">
           <h2 className="text-3xl font-semibold text-gray-900 md:text-4xl">
@@ -47,8 +111,7 @@ export default function WeProvide() {
 
         {/* Cards */}
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-
-          {services.map((item, index) => (
+          {services.map((item: ServiceItem, index: number) => (
             <div
               key={index}
               className="flex h-full flex-col rounded-lg border border-gray-200 bg-white p-6"
@@ -74,20 +137,19 @@ export default function WeProvide() {
                 {item.description}
               </p>
 
-              {/* Button */}
+              {/* Action Button */}
               <div className="mt-auto pt-5 text-center">
-                <Link
-                  href={item.href}
-                  className="inline-flex rounded bg-[#024AD8] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0138ab]"
+                <button
+                  type="button"
+                  onClick={handleActionClick}
+                  className="inline-flex rounded bg-[#024AD8] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0138ab] cursor-pointer"
                 >
                   {item.button}
-                </Link>
+                </button>
               </div>
             </div>
           ))}
-
         </div>
-
       </div>
     </section>
   );

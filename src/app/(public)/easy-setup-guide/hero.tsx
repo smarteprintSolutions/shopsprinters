@@ -36,7 +36,7 @@ export default function Hero() {
               <div className="flex items-center gap-5">
                 <div>
                   <h1 className="text-3xl font-semibold leading-tight text-white md:text-4xl xl:text-5xl">
-                    Exclusive Printer Support
+                   Printer Help Center
                   </h1>
 
                   <p className="mt-3 max-w-xl text-base leading-7 text-white/90 md:text-lg">
@@ -67,7 +67,7 @@ export default function Hero() {
                     href="tel:+18881234567"
                     className="break-all text-3xl font-light tracking-tight text-[#024AD8] md:text-4xl xl:text-5xl"
                   >
-                    +1 (888) 123-4567
+                    +1 (877) 238-0240 
                   </a>
 
                 </div>

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
 import ModelPage from './ModelPage.jsx';
 import BrandFooter from "../BrandFooter.jsx";
 import Header from '../Header.jsx';
@@ -95,10 +96,12 @@ const PRINTER_MODELS = [
 ];
 
 const ModelSearch = () => {
+    const router = useRouter();
     const [input, setInput] = useState("");
     const [error, setError] = useState("");
     const [allowModelSearch, setAllowModelSearch] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [authorized, setAuthorized] = useState<boolean | null>(null);
     
     // Autocomplete states & refs
     const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
@@ -108,9 +111,19 @@ const ModelSearch = () => {
     useEffect(() => {
         fetch('/api/printer-setup/settings')
             .then(res => res.json())
-            .then(data => setAllowModelSearch(data.allowModelSearch !== false))
-            .catch(() => setAllowModelSearch(true));
-    }, []);
+            .then(data => {
+                const allowed = data.allowStartNow === true;
+                if (!allowed) {
+                    router.replace('/easy-setup-guide/');
+                    return;
+                }
+                setAuthorized(true);
+                setAllowModelSearch(data.allowModelSearch !== false);
+            })
+            .catch(() => {
+                router.replace('/easy-setup-guide/');
+            });
+    }, [router]);
 
     // Filter models whenever typing occurs
     useEffect(() => {
@@ -156,6 +169,10 @@ const ModelSearch = () => {
         setShowDropdown(false);
         setError("");
     };
+
+    if (authorized === null) {
+        return null;
+    }
 
     return (
         <div className="w-full bg-white flex flex-col font-sans">

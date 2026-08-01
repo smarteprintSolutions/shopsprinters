@@ -70,18 +70,20 @@ export const SetupSettingsProvider = ({
       setLoading(true);
 
       const timestamp = Date.now();
-      const res = await fetch(`/api/setup/header-visibility?_t=${timestamp}`, { cache: 'no-store' });
+      const res = await fetch(`/api/printer-setup/settings?_t=${timestamp}`, { cache: 'no-store' });
 
       if (!res.ok) throw new Error();
 
       const data = await res.json();
 
       setSettings({
-        showHeader: data.showHeader,
-        showLogo: data.showLogo,
-        allowModelSearch: data.allowModelSearch,
-        allowInstallationFailed: data.allowInstallationFailed,
-        allowCompleteSetup: data.allowCompleteSetup,
+        showHeader: data.showHeader ?? defaultSettings.showHeader,
+        showLogo: data.showLogo ?? defaultSettings.showLogo,
+        allowModelSearch: data.allowModelSearch ?? defaultSettings.allowModelSearch,
+        allowInstallationFailed:
+          data.allowInstallationFailed ?? defaultSettings.allowInstallationFailed,
+        allowCompleteSetup:
+          data.allowCompleteSetup ?? defaultSettings.allowCompleteSetup,
       });
     } catch (err) {
       console.error(err);
@@ -110,7 +112,7 @@ export const SetupSettingsProvider = ({
       setSaving(true);
 
       const res = await fetch(
-        '/api/setup/header-visibility',
+        '/api/printer-setup/settings',
         {
           method: 'PUT',
           headers: {

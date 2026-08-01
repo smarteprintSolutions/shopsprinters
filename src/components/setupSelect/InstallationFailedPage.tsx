@@ -34,7 +34,7 @@ export default function InstallationFailedPage() {
           </p>
           <div className="text-slate-950 font-semibold text-lg md:text-xl mb-2 text-center">Contact HP Support to Resolve this Issue</div>
           <div className="text-slate-700 text-sm md:text-base mb-7 text-center">
-            Toll-Free (USA/CA): <span className="font-bold">+1 (855) 618-4642</span>
+            Toll-Free (USA/CA): <span className="font-bold">+1 (877) 238-0240</span>
           </div>
           <div className="flex justify-center mb-6">
             <button

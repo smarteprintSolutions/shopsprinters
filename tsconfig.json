@@ -74,7 +74,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/components/setupSelect/SettingsManagement.jsx"  ],
   "exclude": [
     "node_modules"
   ]
