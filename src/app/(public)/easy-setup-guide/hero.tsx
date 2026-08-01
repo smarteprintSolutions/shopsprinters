@@ -1,7 +1,26 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 
 export default function Hero() {
+  // Helper to trigger Jivo Chat on click
+  const openJivoChat = () => {
+    if (typeof window === "undefined") return;
+    const w = window as any;
+    if (w.jivo_api && typeof w.jivo_api.open === "function") {
+      w.jivo_api.open();
+      return;
+    }
+    if (w.jivo_api && typeof w.jivo_api.show === "function") {
+      w.jivo_api.show();
+      return;
+    }
+    if (w.Jivo_API && typeof w.Jivo_API.open === "function") {
+      w.Jivo_API.open();
+    }
+  };
+
   return (
     <section className="bg-white py-6 lg:py-10">
       <div className="mx-auto max-w-[1450px] px-4">
@@ -38,8 +57,9 @@ export default function Hero() {
                       alt="Customer Support"
                       width={64}
                       height={64}
-                      className="h-full w-full object-contain"
+                      className="h-full w-full object-contain cursor-pointer"
                       priority
+                      onClick={openJivoChat}
                     />
                   </div>
 
@@ -67,13 +87,14 @@ export default function Hero() {
 
                 </ul>
 
-                {/* Link */}
-                <a
-                  href="/fix-printer-scan"
-                  className="mt-7 inline-block text-base font-medium text-[#024AD8] transition hover:underline"
+                {/* Chat Action Button */}
+                <button
+                  type="button"
+                  onClick={openJivoChat}
+                  className="mt-7 inline-block text-left text-base font-medium text-[#024AD8] transition hover:underline cursor-pointer"
                 >
                   Chat with a Live Specialist for troubleshooting guides, helpful resources, and additional support information. &rarr;
-                </a>
+                </button>
 
               </div>
 

@@ -1,38 +1,62 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Download,
-  ClipboardCheck,
+  Printer,
+  Wifi,
+  Sparkles,
   Headset,
-  MessageCircleMore,
+  ShieldCheck,
 } from "lucide-react";
 
-const items = [
+// Items from SS2
+const supportCards = [
   {
-    title: "Download Drivers",
-    href: "/hp-smart-install",
-    icon: Download,
+    title: "Printer Set Up Issue",
+    icon: Printer,
   },
   {
-    title: "Check Warranty Status",
-    href: "/check-warranty",
-    icon: ClipboardCheck,
+    title: "Printer Offline",
+    icon: Printer,
   },
   {
-    title: "Contact Us",
-    href: "/hp-smart-install",
+    title: "Wireless printer issue",
+    icon: Wifi,
+  },
+  {
+    title: "Paper jam issue",
+    icon: Sparkles,
+  },
+  {
+    title: "Printer Job Stuck In Queue",
     icon: Headset,
   },
   {
-    title: "Diagnose & Fix",
-    href: "/hp-smart-install",
-    icon: MessageCircleMore,
+    title: "Scanner issues",
+    icon: ShieldCheck,
   },
 ];
 
 export default function HowSetup() {
+  // Helper to trigger Jivo Chat on click
+  const openJivoChat = () => {
+    if (typeof window === "undefined") return;
+    const w = window as any;
+    if (w.jivo_api && typeof w.jivo_api.open === "function") {
+      w.jivo_api.open();
+      return;
+    }
+    if (w.jivo_api && typeof w.jivo_api.show === "function") {
+      w.jivo_api.show();
+      return;
+    }
+    if (w.Jivo_API && typeof w.Jivo_API.open === "function") {
+      w.Jivo_API.open();
+    }
+  };
+
   return (
-    // Reduced padding-top from py-12/py-16 down to pt-2 pb-12/pb-16
     <section className="bg-white pt-2 pb-12 lg:pb-16">
       <div className="mx-auto max-w-7xl px-4">
 
@@ -71,12 +95,13 @@ export default function HowSetup() {
                 Printer Setup
               </Link>
 
-              <Link
-                href="/find-printer"
+              <button
+                type="button"
+                onClick={openJivoChat}
                 className="text-sm font-medium text-[#024AD8] underline underline-offset-4 hover:text-[#0138ab] transition-colors"
               >
                 Get Instant Support
-              </Link>
+              </button>
             </div>
 
             <div className="mt-8 border-t border-gray-100 pt-6">
@@ -93,36 +118,30 @@ export default function HowSetup() {
           </div>
         </div>
 
-        {/* Bottom Support Links */}
-        <div className="mt-12 border-t border-b border-gray-200">
-          
-          {/* Enhanced responsive grid: 1 col on mobile, 2 cols on small tabs, 4 cols on larger desktop setups */}
-          <div className="grid grid-cols-1 divide-y divide-gray-200 sm:grid-cols-2 sm:divide-y-0 sm:gap-px bg-gray-200 md:grid-cols-4">
-
-            {items.map((item, index) => {
+        {/* SS2 Style Replacement Cards */}
+        <div className="mt-12">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            {supportCards.map((item, index) => {
               const Icon = item.icon;
 
               return (
-                <Link
+                <button
                   key={index}
-                  href={item.href}
-                  className="flex min-h-[140px] sm:min-h-[170px] flex-col items-center justify-center bg-white px-4 py-6 text-center transition hover:bg-gray-50/80 group"
+                  type="button"
+                  onClick={openJivoChat}
+                  className="flex flex-col items-center justify-center p-6 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer group text-center h-full min-h-[160px]"
                 >
-                  <Icon
-                    size={38}
-                    strokeWidth={1.5}
-                    className="mb-4 text-[#024AD8] transition-transform duration-300 group-hover:scale-110"
-                  />
+                  <div className="mb-4 flex items-center justify-center w-12 h-12 rounded-xl bg-blue-50 text-[#024AD8] transition-transform duration-300 group-hover:scale-110">
+                    <Icon size={24} strokeWidth={2} />
+                  </div>
 
-                  <span className="text-sm sm:text-base font-medium text-[#024AD8] group-hover:underline">
+                  <span className="text-xs sm:text-sm font-bold text-gray-900 leading-snug group-hover:text-[#024AD8] transition-colors">
                     {item.title}
                   </span>
-                </Link>
+                </button>
               );
             })}
-
           </div>
-
         </div>
 
       </div>

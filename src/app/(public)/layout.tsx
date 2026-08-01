@@ -19,6 +19,7 @@ export default function PublicLayout({
     pathname?.startsWith('/complete-setup') ||
     pathname?.startsWith('/installation-failed');
   const hideFooter =
+    pathname?.startsWith('/easy-setup-guide') ||
     pathname?.startsWith('/search-model') ||
     pathname?.startsWith('/complete-setup') ||
     pathname?.startsWith('/installation-failed');

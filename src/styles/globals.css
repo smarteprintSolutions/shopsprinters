@@ -4,9 +4,21 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+/* Local HP Simplified font (Light) - used as primary site font */
+@font-face {
+  font-family: 'HP Simplified';
+  src: url('/css/font/HP%20Simplified%20Light.woff2') format('woff2'),
+       url('/css/font/HP%20Simplified%20Light.woff') format('woff'),
+       url('/css/font/HP%20Simplified%20Light.ttf') format('truetype'),
+       url('/css/font/HP%20Simplified%20Light.eot');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   html {
-    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+    font-family: 'HP Simplified', 'Outfit', system-ui, -apple-system, sans-serif;
   }
 
   body {

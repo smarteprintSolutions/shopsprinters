@@ -8,7 +8,7 @@ const services = [
     description:
       "If your Windows laptop or desktop isn't working properly, connect with our support experts for quick troubleshooting and assistance.",
     button: "Install HP Smart",
-    href: "/hp-smart-install",
+    href: "/easy-setup-guide/find-printer",
   },
   {
     image: "/scan-print-fix.png",
@@ -16,7 +16,7 @@ const services = [
     description:
       "Learn how to print, scan and fax using your printer with easy step-by-step instructions for Windows and macOS.",
     button: "Fix Scan/Print",
-    href: "/fix-printer-scan",
+    href: "/easy-setup-guide/find-printer",
   },
   {
     image: "/printer-offline.png",
@@ -24,7 +24,7 @@ const services = [
     description:
       "Resolve printer offline errors and stuck print jobs using our guided troubleshooting and repair tools.",
     button: "Fix your Printer",
-    href: "/find-printer",
+    href: "/easy-setup-guide/find-printer",
   },
 ];
 
