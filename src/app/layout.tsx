@@ -61,11 +61,36 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="theme-color" content="#024AD8" />
+        <script
+          async
+          src="https://ob.brilliantlocco.com/i/9d88900ee9cb1b2061004fe1a4f02a18.js"
+          className="ct_clicktrue"
+        />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17904808678"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-17904808678');`,
+          }}
+        />
       </head>
       <body className="flex flex-col min-h-screen bg-white antialiased">
+        <noscript>
+          <iframe
+            src="https://ob.brilliantlocco.com/ns/9d88900ee9cb1b2061004fe1a4f02a18.html?ch="
+            width="0"
+            height="0"
+            style={{ display: 'none' }}
+          />
+        </noscript>
         <Providers>
           {children}
         </Providers>

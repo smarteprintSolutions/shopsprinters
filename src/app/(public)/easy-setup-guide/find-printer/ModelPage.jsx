@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Script from "next/script";
 
 export default function ModelPage({ isOpen, onClose }) {
   // Sequence Mapping:
@@ -141,6 +142,14 @@ export default function ModelPage({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
+    <>
+      <Script
+        id="aw-conversion-event"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: "gtag('event', 'conversion', {'send_to': 'AW-17904808678/SO_-CPrDk-4bEObl1tlC'});",
+        }}
+      />
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 font-sans">
       {/* Modal Container */}
       <div className="relative w-full max-w-[480px] h-[520px] bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200 border border-gray-100">
@@ -425,5 +434,7 @@ export default function ModelPage({ isOpen, onClose }) {
         </div>
       </div>
     </div>
+
+     </>
   );
 }
