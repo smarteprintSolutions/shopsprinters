@@ -130,8 +130,7 @@ export default function HowSetup() {
               </h3>
 
               <p className="mt-1.5 text-sm text-gray-600 leading-relaxed">
-                Download drivers, check warranty, contact support or diagnose
-                printer issues with a single click.
+                Need additional assistance? Select your printer issue below to access step-by-step guidance, helpful resources, and personalized support from our specialists.
               </p>
             </div>
 
