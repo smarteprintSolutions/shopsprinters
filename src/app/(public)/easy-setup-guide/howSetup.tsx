@@ -112,7 +112,7 @@ export default function HowSetup() {
                 onClick={handlePrinterSetupClick}
                 className="rounded bg-[#024AD8] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#0138ab] shadow-sm text-center min-w-[140px]"
               >
-                Printer Setup
+                CLICK HERE FOR PRINTER SETUP
               </button>
 
               <button
